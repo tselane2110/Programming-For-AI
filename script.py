@@ -8,15 +8,8 @@ def fix_notebook(path):
 
         # Check if metadata.widgets exists
         if "widgets" in nb.get("metadata", {}):
-            widgets = nb["metadata"]["widgets"]
-            
-            # If 'state' key missing, add empty dict
-            if "state" not in widgets:
-                widgets["state"] = {}
-                print(f"Fixed missing 'state' in: {path}")
-
-            # (Optional) If you want to just remove widgets entirely:
-            # nb["metadata"].pop("widgets")
+            nb["metadata"].pop("widgets")
+            print(f"Removed widgets metadata from: {path}")
 
         # Save notebook back
         with open(path, "w", encoding="utf-8") as f:
